@@ -2,12 +2,12 @@
 Turns on survey queue information and input field validation endpoints for the REDCap API.
 
 ## Usage
-To enable this extension to the REDCap API, module must be enabled on the Control Center of REDCap.
-
-Additionally, this module must be enabled on each project before it can be used there.
+This module must be enabled on each project before the `surveyqueue` endpoint can be used for that project.
+This module must be enabled at the system level before using the `fieldvalidation` endpoint.
 
 Calls to this API are almost identical to the REDCap API, with the following changes.
-1. URL must include the following GET parameters: prefix=[this_module_prefix], type=module, NOAUTH, page=[surveyqueue|fieldvalidation], pid=[project_id]
+1. URL must include the following GET parameters: prefix=[this_module_prefix], type=module, NOAUTH, page=[surveyqueue|fieldvalidation]
+2. When using the `surveyqueue` endpoint, an additional `pid` get parameter must be provided pid=[project_id].
 
 The module prefix is the name of the folder that contains the module without the version number. If you install the module in `redcap/modules/survey_queue_field_validation_api_v0.1` then the module prefix will be `survey_queue_field_validation_api`.
 
@@ -21,7 +21,7 @@ $data = array(
 );
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'http://redcap.myinstitution.com/api/?prefix=[prefix]&page=[surveyqueue|fieldvalidation]&pid=[pid]&type=module&NOAUTH');
+curl_setopt($ch, CURLOPT_URL, 'http://redcap.[myinstitution].com/api/?prefix=[prefix]&page=[surveyqueue|fieldvalidation]&pid=[pid]&type=module&NOAUTH');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
 curl_setopt($ch, CURLOPT_VERBOSE, 0);
@@ -35,7 +35,7 @@ $output = curl_exec($ch);
 curl_close($ch);
 ```
 
-The above code snippet will pull all the project survey queue for the specified project ID or system field validation information as long as the provided API token is valid.
+The above code snippet will pull all the project survey queue info for the specified project ID or system field validation information as long as the provided API token is valid.
 In the event that there are no survey instruments activated in the survey queue for the specified project, an empty json array will be returned.
 
 ## Survey Queue Output
