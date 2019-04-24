@@ -1,16 +1,15 @@
 <?php
-namespace Vanderbilt\SurveyQueueFieldValidationAPIExternalModule;
+namespace Vanderbilt\SurveyQueueFieldValidationAPIModule;
 
 use ExternalModules\AbstractExternalModule;
 use ExternalModules\ExternalModules;
 
-class SurveyQueueFieldValidationAPIExternalModule extends AbstractExternalModule
+class SurveyQueueFieldValidationAPIModule extends AbstractExternalModule
 {
 	public function checkApiToken() {
-
 		global $post;
 
-		/** @var \RestRequest $data */
+		// /** @var \RestRequest $data */
 		$data = \RestUtility::processRequest(true);
 
 		$post = $data->getRequestVars();

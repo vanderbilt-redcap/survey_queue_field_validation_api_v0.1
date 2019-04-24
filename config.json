@@ -1,7 +1,7 @@
 {
 	"name": "Survey Queue Field Validation API",
 
-	"namespace": "Vanderbilt\\SurveyQueueFieldValidationAPIExternalModule",
+	"namespace": "Vanderbilt\\SurveyQueueFieldValidationAPIModule",
 
 	"description": "Turns on survey queue information and input field validation endpoints for the REDCap API.",
 
